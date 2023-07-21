@@ -149,9 +149,9 @@ void __cyg_profile_func_exit(void *this_fn, void *call_site)
 
    pFile = fopen("stack.bin", "ab");//open the binary file
 
-  // pthread_mutex_lock(&lock);//mutex around when writing to the file to prevent a race condition
+   pthread_mutex_lock(&lock);//mutex around when writing to the file to prevent a race condition
    fwrite(currentNode, sizeof(struct STACK_FRAME), 1, pFile);//writes each stack frame to the binary file
-  // pthread_mutex_unlock(&lock);
+   pthread_mutex_unlock(&lock);
  
   
    fclose(pFile);
